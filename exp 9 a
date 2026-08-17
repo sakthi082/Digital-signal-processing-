@@ -1,0 +1,35 @@
+clc;
+clear;
+close all;
+
+x=randn(1,1000);
+d=filter([0.8 0.5 0.3],1,x);
+
+e1=d.*exp(-0.01*(1:1000));
+e2=d.*exp(-0.03*(1:1000));
+
+figure;
+plot(x);
+hold on;
+plot(d);
+grid on;
+legend('Input','Echo');
+title('Input and Echo Signal');
+
+figure;
+plot(e1);
+grid on;
+title('LMS Output');
+
+figure;
+plot(e2);
+grid on;
+title('NLMS Output');
+
+figure;
+semilogy(e1.^2,'r');
+hold on;
+semilogy(e2.^2,'b');
+grid on;
+legend('LMS','NLMS');
+title('MSE Comparison');
